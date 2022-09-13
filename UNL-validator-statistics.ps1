@@ -3,7 +3,7 @@
 # (C) Jon Nilsen (jonaagenilsen@gmail.com) 2022
 # Free to use for whatever. I hold no grudges :).
 #
-#
+# Usage: load up script in any Powershell and run
 
 Function Get-VoteStatistics {
   $ValidVotes = $AllAmendments | Where-Object { $_.enabled -match "False"}

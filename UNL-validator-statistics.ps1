@@ -61,7 +61,6 @@ Function Get-ValidatorVoteNames {
   $VotedIDs = ($dUNLValidators | Where-Object { $_.master_key -eq $Master_key }).votes.amendments
   if (!$VotedIDs) {
     return $VotedOn
-#    return "-"
   }
 
   foreach ($VotedID in $VotedIDs) {
@@ -87,7 +86,6 @@ Function Get-ValidatorVotesBaseOwner {
   $NetworkBaseOwner = $($FeeSettings.node.ReserveBase) / 1000000
   $NetworkReserveOwner = $($FeeSettings.node.ReserveIncrement) / 1000000
 
-  #$dUNLValidators | Where-Object { $_.master_key -eq $Master_key -and ($_.votes.reserve_base -and $_.votes.reserve_inc) } | Select-Object votes -ExpandProperty votes
   if ($BaseOwner -and $ReserveOwner) { 
     return "$BaseOwner / $ReserveOwner XRP"
   }
@@ -117,7 +115,6 @@ Function Get-Release_latest {
 }
 
 clear
-
 try {
   $Rippled_stable = Get-Release_latest
 }

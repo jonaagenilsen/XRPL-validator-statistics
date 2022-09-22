@@ -30,12 +30,16 @@ if ($Servers) {
     }
     $ServerStatistics += $Object
   }
+
+  Write-Output ""
+  Write-Output "Servers sorted by version"
+  $ServerStatistics | Select-Object * | Sort-Object version -Descending | ft
+  
+  Write-Output ""
+  Write-Output "Servers sorted by count"
+  $ServerStatistics | Select-Object * | Sort-Object count -Descending | ft
+}
+else {
+  Write-Output "*Display old man yelling at clouds"
 }
 
-Write-Output ""
-Write-Output "Servers sorted by version"
-$ServerStatistics | Select-Object * | Sort-Object version -Descending | ft
-
-Write-Output ""
-Write-Output "Servers sorted by count"
-$ServerStatistics | Select-Object * | Sort-Object count -Descending | ft

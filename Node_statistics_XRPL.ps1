@@ -5,7 +5,7 @@
 #
 #
 
-clear
+#clear
 
 $URL = "https://zstats.alloy.ee/mainnet/latest.json"
 $web_client = new-object system.net.webclient
@@ -17,7 +17,9 @@ catch {
 }
 
 if ($Servers) {
-  Write-Host "Found $($Servers.total) in $($Servers.network) network:"
+  Write-Host "Status of XRPL servers: " -NoNewline; Write-Host "$ReportTime" -NoNewline -ForegroundColor Green; Write-Host " CEST"
+  Write-Host "Found $($Servers.total) servers in $($Servers.network) network:"
+  Write-Host ""
 
   [pscustomobject]$ServerStatistics = @()
   
@@ -31,15 +33,19 @@ if ($Servers) {
     $ServerStatistics += $Object
   }
 
-  Write-Output ""
-  Write-Output "Servers sorted by version"
-  $ServerStatistics | Select-Object * | Sort-Object version -Descending | ft
+  Write-Host "Servers sorted by version" -NoNewline
+  $ServerStatistics | Select-Object * | Sort-Object version -Descending | ft -HideTableHeaders
   
-  Write-Output ""
-  Write-Output "Servers sorted by count"
-  $ServerStatistics | Select-Object * | Sort-Object count -Descending | ft
+  Write-Host "Servers sorted by count" -NoNewline
+  $ServerStatistics | Select-Object * | Sort-Object count -Descending | ft -HideTableHeaders
 }
 else {
-  Write-Output "*Display old man yelling at clouds"
+  Write-Host "*Display old man yelling at clouds"
 }
+
+$CurrentVersionCount = ($ServerStatistics | Select-Object * -First 1).count
+$CurrentVersion = ($ServerStatistics | Select-Object * -First 1).version
+$CurrentVersionPercent = [math]::Round(($CurrentVersionCount * 100 / $Servers.total),1)
+Write-host "Servers upgraded to latest version $($CurrentVersion): $($CurrentVersionCount)/$($Servers.total) ($CurrentVersionPercent%)"
+Write-Host "Source: @alloynetworks"
 

@@ -46,9 +46,9 @@ else {
   Write-Host "*Display old man yelling at clouds"
 }
 
-$CurrentVersionCount = ($ServerStatistics | Select-Object * -First 1).count
-$CurrentVersion = ($ServerStatistics | Select-Object * -First 1).version
-$CurrentVersionPercent = [math]::Round(($CurrentVersionCount * 100 / $Servers.total),1)
-Write-host "Servers upgraded to latest version $($CurrentVersion): $($CurrentVersionCount)/$($Servers.total) ($CurrentVersionPercent%)"
+#$CurrentVersionCount = ($ServerStatistics | Select-Object * -First 1).count
+#$CurrentVersion = ($ServerStatistics | Select-Object * -First 1).version
+#$CurrentVersionPercent = [math]::Round(($CurrentVersionCount * 100 / $Servers.total),1)
+#Write-host "Servers upgraded to latest version $($CurrentVersion): $($CurrentVersionCount)/$($Servers.total) ($CurrentVersionPercent%)"
 Write-Host "Source: @alloynetworks"
 

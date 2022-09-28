@@ -10,7 +10,7 @@ Function Get-VoteStatistics {
 
   [pscustomobject]$VoteStatistics = @()
   foreach ($ValidVote in $ValidVotes) {
-    $Percent = [math]::Round(($ValidVote.count * 100 / $ValidVote.threshold + 1),1)
+    $Percent = [math]::Round(($ValidVote.count * 100 / ($ValidVote.threshold + 1)),1)
       $Object = [pscustomobject]@{
         AmendmentID   = $ValidVote.amendment_id
         AmendmentName = $ValidVote.name
